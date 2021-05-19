@@ -2,32 +2,47 @@ import { createState, createSelectorHook } from '@state-designer/react'
 
 type DataProps = {
   answers: string[]
+  questionNumber: number
 }
 
 const initialData: DataProps = {
-  answers: []
+  answers: [],
+  questionNumber: 1
 }
 
 export const state = createState({
   data: initialData,
+  on: {
+    GET_STARTED: { to: 'answering' }
+  },
   initial: 'notAnswering',
   states: {
     notAnswering: {
       on: {
-        BEGIN_ANSWERING: { to: 'answering' }
+        GET_STARTED: { to: 'answering' }
       }
     },
     answering: {
       on: {
-        SUBMIT_QUESTION: 'submitQuestion'
+        SUBMIT_QUESTION: {
+          if: 'lastQuestion',
+          to: 'result',
+          else: { do: 'submitQuestion' }
+        }
       }
+    },
+    result: {}
+  },
+  conditions: {
+    lastQuestion(d) {
+      return d.questionNumber === 6
     }
   },
   actions: {
     submitQuestion(d, p) {
       d.answers.push(p)
 
-      console.log(d.answers)
+      d.questionNumber < 6 ? d.questionNumber++ : (d.questionNumber = 1)
     }
   }
 })
