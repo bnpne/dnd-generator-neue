@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'iA Writer';
+  font-stretch: '25% 150%';
+  font-weight: '100 1000';
+  src: url('/fonts/iAWriterDuoV.ttf') format('truetype-variations');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,4 @@
+[ ] - Style HomePage
+[ ] - Start Creating Questions
+[ ] - Create new algorithm to pick character
+[ ] - have output page that can be printed
