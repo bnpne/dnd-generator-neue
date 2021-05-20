@@ -7,7 +7,7 @@ const Layout = ({ title, children }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="px-2 py-5 md:py-10 max-w-screen-lg mx-auto min-h-screen overflow-hidden">
+      <div className="px-2 py-5 md:py-10 max-w-screen-lg mx-auto min-h-screen ">
         <div>{children}</div>
       </div>
     </div>

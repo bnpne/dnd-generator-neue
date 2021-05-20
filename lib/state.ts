@@ -1,13 +1,18 @@
 import { createState, createSelectorHook } from '@state-designer/react'
+import { processData } from './process'
 
 type DataProps = {
   answers: string[]
   questionNumber: number
+  raceInput: string
+  classInput: string
 }
 
 const initialData: DataProps = {
   answers: [],
-  questionNumber: 1
+  questionNumber: 1,
+  raceInput: null,
+  classInput: null
 }
 
 export const state = createState({
@@ -26,12 +31,16 @@ export const state = createState({
       on: {
         SUBMIT_QUESTION: {
           if: 'lastQuestion',
-          to: 'result',
-          else: { do: 'submitQuestion' }
+          then: { do: 'submitQuestion', to: 'result' },
+          else: {
+            do: 'submitQuestion'
+          }
         }
       }
     },
-    result: {}
+    result: {
+      onEnter: ['processAnswers']
+    }
   },
   conditions: {
     lastQuestion(d) {
@@ -42,7 +51,14 @@ export const state = createState({
     submitQuestion(d, p) {
       d.answers.push(p)
 
-      d.questionNumber < 6 ? d.questionNumber++ : (d.questionNumber = 1)
+      d.questionNumber < 7 ? d.questionNumber++ : (d.questionNumber = 1)
+    },
+    processAnswers(d) {
+      const a = d.answers
+      const chaData = processData(a[1], a[2], a[3], a[4], a[5], a[6], a[7])
+
+      d.raceInput = chaData.userRace
+      d.classInput = chaData.userClass
     }
   }
 })
