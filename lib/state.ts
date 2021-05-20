@@ -61,7 +61,7 @@ export const state = createState({
     },
     processAnswers(d) {
       const a = d.answers
-      console.log(a)
+      // console.log(a)
       const chaData = processData(a[0], a[1], a[2], a[3], a[4], a[5], a[6])
 
       d.raceInput = chaData.userRace

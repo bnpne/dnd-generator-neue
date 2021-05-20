@@ -3,7 +3,7 @@ import useSWR from 'swr'
 const fetcher = args => fetch(args).then(res => res.json())
 
 const ClassInfo = info => {
-  console.log(info.info)
+  // console.log(info.info)
   var URL = `https://www.dnd5eapi.co/api/classes/${info.info}`
 
   const { data, error } = useSWR(URL, fetcher)
