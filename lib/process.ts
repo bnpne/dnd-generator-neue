@@ -1,6 +1,12 @@
 export function processData(q1, q2, q3, q4, q5, q6, q7) {
-  var userClass = chooseClass(q1, q2, q3, q4, q7)
-  var userRace = chooseRace(userClass, q5, q6)
+  var userClass = chooseClass(
+    q1.toLowerCase(),
+    q2.toLowerCase(),
+    q3.toLowerCase(),
+    q4.toLowerCase(),
+    q7.toLowerCase()
+  )
+  var userRace = chooseRace(userClass, q5.toLowerCase(), q6.toLowerCase())
 
   return { userClass, userRace }
 }

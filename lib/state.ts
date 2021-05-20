@@ -10,7 +10,7 @@ type DataProps = {
 
 const initialData: DataProps = {
   answers: [],
-  questionNumber: 1,
+  questionNumber: 0,
   raceInput: null,
   classInput: null
 }
@@ -41,7 +41,7 @@ export const state = createState({
     result: {
       onEnter: ['processAnswers'],
       on: {
-        TRY_AGAIN: { do: 'reset', to: 'answering' }
+        TRY_AGAIN: { to: 'answering' }
       }
     }
   },
@@ -61,7 +61,8 @@ export const state = createState({
     },
     processAnswers(d) {
       const a = d.answers
-      const chaData = processData(a[1], a[2], a[3], a[4], a[5], a[6], a[7])
+      console.log(a)
+      const chaData = processData(a[0], a[1], a[2], a[3], a[4], a[5], a[6])
 
       d.raceInput = chaData.userRace
       d.classInput = chaData.userClass
