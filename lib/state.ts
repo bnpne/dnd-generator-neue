@@ -39,7 +39,10 @@ export const state = createState({
       }
     },
     result: {
-      onEnter: ['processAnswers']
+      onEnter: ['processAnswers'],
+      on: {
+        TRY_AGAIN: { do: 'reset', to: 'answering' }
+      }
     }
   },
   conditions: {
@@ -48,6 +51,9 @@ export const state = createState({
     }
   },
   actions: {
+    reset(d) {
+      d = initialData
+    },
     submitQuestion(d, p) {
       d.answers.push(p)
 
